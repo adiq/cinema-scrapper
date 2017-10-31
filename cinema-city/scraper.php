@@ -24,3 +24,5 @@ foreach ($cinemas as $cinema) {
         var_dump(getDaySchedule($cinema, $date));
     }
 }
+
+// signed

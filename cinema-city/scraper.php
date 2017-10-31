@@ -12,6 +12,15 @@ function getDaySchedule($cinemaId, $date = null) {
     return json_decode($scheduleJson, true);
 }
 
+
+function getAvailableScheduleDays($cinemaId, $date = null) {
+    $json = file_get_contents('https://www.cinema-city.pl/pl/data-api-service/v1/quickbook/10103/dates/in-cinema/'.$cinemaId.'/until/'.$date.'?attr=&lang=pl_PL');
+    return json_decode($json, true);
+}
+
 foreach ($cinemas as $cinema) {
-    var_dump(getDaySchedule($cinema, date('Y-m-d')));
+    $dates = getAvailableScheduleDays($cinema, date('2018-m-d'));
+    foreach ($dates['body']['dates'] as $date) {
+        var_dump(getDaySchedule($cinema, $date));
+    }
 }

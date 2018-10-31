@@ -7,6 +7,8 @@ use App\Model\EventModel;
 use App\Model\MovieModel;
 
 class CinemaCity {
+    private const URL_PREFIX = 'https://www.cinema-city.pl';
+
     public function getScheduleForCinema(CinemaModel $cinemaModel) {
         $dates = $this->getAvailableScheduleDays($cinemaModel->getId(), date('Y-m-d'));
 
@@ -28,9 +30,9 @@ class CinemaCity {
         $data['id'] ?? null,
             $data['name'] ?? null,
             $data['length'] ?? null,
-            $data['posterLink'] ?? null,
+            self::URL_PREFIX . $data['posterLink'] ?? null,
             $data['videoLink'] ?? null,
-            $data['link'] ?? null,
+            self::URL_PREFIX . $data['link'] ?? null,
             $data['attributeIds'] ?? []
         );
     }
@@ -42,7 +44,7 @@ class CinemaCity {
             }
             $movie->addEvent(new EventModel(
                 new \DateTime($event['eventDateTime']),
-                $event['bookingLink'] ?? null,
+                self::URL_PREFIX . $event['bookingLink'] ?? null,
                 $event['soldOut'] ?? null
             ));
         }

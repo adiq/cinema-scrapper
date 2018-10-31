@@ -1,0 +1,14 @@
+{
+    "name": "adiq/cinema-scrapper",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Adrian Zmenda",
+            "email": "adrian@zmenda.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {"App\\": "src/"}
+    }
+}
